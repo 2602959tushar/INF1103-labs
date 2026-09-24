@@ -29,8 +29,8 @@ while True:
     else:
         i += n
 
-    if i > 500:
-        print("Alert: Overstock")
-        print("Total Units Processed:", i)
-        print("Number of Failed/Rejected Entries:", f)
-        break
+        if i > 500:
+            print("Alert: Overstock")
+            print("Total Units Processed:", i)
+            print("Number of Failed/Rejected Entries:", f)
+            break
