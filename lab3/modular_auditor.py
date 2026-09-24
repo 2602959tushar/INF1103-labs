@@ -14,6 +14,10 @@ def get_valid_input():
             return None
         else:
             return n
+
+def process_delivery(current_total, new_value):
+    return current_total + new_value
+
 i = 0
 f = 0
 
@@ -27,7 +31,7 @@ while True:
     elif n is None:
         f += 1
     else:
-        i += n
+        i = process_delivery(i, n)
 
         if i > 500:
             print("Alert: Overstock")
