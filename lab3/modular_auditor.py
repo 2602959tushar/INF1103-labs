@@ -21,6 +21,10 @@ def process_delivery(current_total, new_value):
 def calculate_tax(amount):
     return round(amount * 0.1, 2)
 
+def generate_report(total_units, failed_attempts):
+    print("Total Units Processed:", total_units)
+    print("Number of Failed/Rejected Entries:", failed_attempts)
+
 i = 0
 f = 0
 total_tax = 0
@@ -29,8 +33,7 @@ while True:
     n = get_valid_input()
 
     if n == "quit":
-        print("Total Units Processed:", i)
-        print("Number of Failed/Rejected Entries:", f)
+        generate_report(i, f)
         print("Total Tax:", round(total_tax, 2))
         break
     elif n is None:
@@ -44,7 +47,6 @@ while True:
 
         if i > 500:
             print("Alert: Overstock")
-            print("Total Units Processed:", i)
-            print("Number of Failed/Rejected Entries:", f)
+            generate_report(i, f)
             print("Total Tax:", round(total_tax, 2))
             break
