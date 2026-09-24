@@ -1,0 +1,4 @@
+FROM python
+WORKDIR /app
+COPY auditor.py .
+CMD ["python", "auditor.py"]
