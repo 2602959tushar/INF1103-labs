@@ -1,5 +1,8 @@
-Total Units: 235
+Total Units: 435
 Transaction History:
 15
 20
 200
+33
+67
+100

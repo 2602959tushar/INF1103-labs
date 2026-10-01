@@ -29,6 +29,33 @@ def generate_report(total_units, failed_attempts):
     print("Number of Failed/Rejected Entries:", failed_attempts)
 
 
+def load_inventory():
+    try:
+        with open("inventory.txt", "r") as file:
+            lines = file.readlines()
+
+        total_units = 0
+        transaction_history = []
+
+        for line in lines:
+            line = line.strip()
+
+            if line.startswith("Total Units:"):
+                total_units = int(line.split(":")[1].strip())
+
+            elif line == "Transaction History:":
+                continue
+
+            elif line != "":
+                transaction_history.append(int(line))
+
+        return total_units, transaction_history
+
+    except FileNotFoundError:
+        print("No inventory file found. Starting with empty inventory.")
+        return 0, []
+
+
 def save_inventory(total_units, transaction_history):
     with open("inventory.txt", "w") as file:
         file.write("Total Units: " + str(total_units) + "\n")
@@ -38,12 +65,11 @@ def save_inventory(total_units, transaction_history):
             file.write(str(transaction) + "\n")
 
 
-i = 0
+# Load previously saved inventory
+i, transaction_history = load_inventory()
+
 f = 0
 total_tax = 0
-
-# History tracking
-transaction_history = []
 
 while True:
     n = get_valid_input()
@@ -52,7 +78,6 @@ while True:
         generate_report(i, f)
         print("Total Tax:", round(total_tax, 2))
 
-        # Write final total and transaction history to file
         save_inventory(i, transaction_history)
         print("Inventory successfully saved to inventory.txt")
 
@@ -64,7 +89,7 @@ while True:
     else:
         i = process_delivery(i, n)
 
-        # Add every valid transaction to the history list
+        # Add valid transaction to history
         transaction_history.append(n)
 
         tax = calculate_tax(n)
