@@ -1,0 +1,71 @@
+commit e0e95cc319254801b75e18c62e0ed15827e90ca8
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:45:44 2026 +0800
+
+    implementation of generate report function
+
+commit 88ad174e2710bfc9584c0632b4e11a9aeccaf3ad
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:43:04 2026 +0800
+
+    implementation of tax
+
+commit 9a5bb7f539cb41ec57aa20be84e6661c00a515df
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:33:07 2026 +0800
+
+    implementation of process delivery function
+
+commit 17aba77388a08be0603036a6a5bf111b3e1c25f7
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:31:32 2026 +0800
+
+    indentation fix
+
+commit 50ad7af47b7e6e8a712ddf38cba6a101f713b485
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:29:34 2026 +0800
+
+    get valid input function added
+
+commit a5934e3fc3df7c2e905a9b2ee656ef6b875fbf2b
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:17:57 2026 +0800
+
+    begin modular auditor
+
+commit a268c70181c5ecd46cfd087f81abc233c75f577a
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:31:59 2026 +0800
+
+    auditor intermediate
+
+commit 2bb42afdf6d0d52a5b32e8ff051c7d117484e334
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:28:19 2026 +0800
+
+    auditor start
+
+commit a74ea1bb744caf3d6ce385dddc1e3d555820de8a
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:21:07 2026 +0800
+
+    Update lab 2
+
+commit 1e25192765c13c5aa9c9f92bd6195d2dfeeb3249
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 10:44:55 2026 +0800
+
+    lab2
+
+commit b5f59cc9d8e052c5909b62511cf4163049db0181
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 11:26:09 2026 +0800
+
+    New profile creator update
+
+commit 45aa4360620bf09f1a29f6a33045efc257392161
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 10:57:25 2026 +0800
+
+    First poast
