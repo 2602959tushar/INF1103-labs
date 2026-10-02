@@ -1,3 +1,19 @@
+import json
+
+
+def load_inventory():
+    try:
+        file = open("inventory.json", "r")
+        data = json.load(file)
+        file.close()
+        print("inventory.json found.")
+        print("Inventory loaded successfully.")
+        return data
+    except FileNotFoundError:
+        print("inventory.json not found. Starting with empty inventory.")
+        return []
+
+
 def add_product(inventory):
     pid = input("Product ID: ")
     name = input("Product Name: ")
@@ -5,6 +21,35 @@ def add_product(inventory):
     stock = int(input("Stock Quantity: "))
     inventory.append({"id": pid, "name": name, "price": price, "stock": stock})
     print("Product added successfully!")
+
+
+def update_stock(inventory):
+    pid = input("Enter Product ID: ")
+    for p in inventory:
+        if p["id"] == pid:
+            print("Product Found:")
+            print("Name:", p["name"])
+            print("Current Stock:", p["stock"])
+            new_stock = int(input("New Stock Quantity: "))
+            p["stock"] = new_stock
+            print("Stock updated successfully!")
+            return
+    print("Product not found.")
+
+
+def search_product(inventory):
+    pid = input("Enter Product ID: ")
+    for p in inventory:
+        if p["id"] == pid:
+            print("Product Found")
+            print("------------------------------------------------")
+            print("ID:", p["id"])
+            print("Name:", p["name"])
+            print("Price: $%.2f" % p["price"])
+            print("Stock:", p["stock"])
+            print("------------------------------------------------")
+            return
+    print("Product not found.")
 
 
 def display_all(inventory):
@@ -15,12 +60,35 @@ def display_all(inventory):
     print("------------------------------------------------")
 
 
-inventory = [
-    {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
-    {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
-    {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
-]
+print("========================================")
+print("INVENTORY MANAGEMENT SYSTEM")
+print("========================================")
 
-display_all(inventory)
-add_product(inventory)
-display_all(inventory)
+inventory = load_inventory()
+
+while True:
+    print("----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+    option = input("Enter option: ")
+
+    if option == "1":
+        display_all(inventory)
+    elif option == "2":
+        add_product(inventory)
+    elif option == "3":
+        update_stock(inventory)
+    elif option == "4":
+        search_product(inventory)
+    elif option == "5":
+        print("save_inventory() not implemented yet.")
+    elif option == "6":
+        print("Program terminated.")
+        break
+    else:
+        print("Invalid option.")
