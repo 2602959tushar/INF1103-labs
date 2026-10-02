@@ -14,7 +14,16 @@ def load_inventory():
         return []
 
 
+def save_inventory(inventory):
+    print("Saving inventory...")
+    file = open("inventory.json", "w")
+    json.dump(inventory, file)
+    file.close()
+    print("Inventory saved successfully to inventory.json.")
+
+
 def add_product(inventory):
+    print("Add New Product")
     pid = input("Product ID: ")
     name = input("Product Name: ")
     price = float(input("Price: "))
@@ -24,6 +33,7 @@ def add_product(inventory):
 
 
 def update_stock(inventory):
+    print("Update Stock")
     pid = input("Enter Product ID: ")
     for p in inventory:
         if p["id"] == pid:
@@ -38,6 +48,7 @@ def update_stock(inventory):
 
 
 def search_product(inventory):
+    print("Search Product")
     pid = input("Enter Product ID: ")
     for p in inventory:
         if p["id"] == pid:
@@ -86,8 +97,11 @@ while True:
     elif option == "4":
         search_product(inventory)
     elif option == "5":
-        print("save_inventory() not implemented yet.")
+        save_inventory(inventory)
     elif option == "6":
+        print("Saving inventory before exit...")
+        save_inventory(inventory)
+        print("Thank you for using Inventory Management System.")
         print("Program terminated.")
         break
     else:
