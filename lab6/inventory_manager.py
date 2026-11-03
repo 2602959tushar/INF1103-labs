@@ -7,6 +7,9 @@ class Product:
         self.__price = price
         self.__stock = stock
 
+    def update_stock(self, quantity):
+        self.__stock = quantity
+
 def load_inventory():
     try:
         file = open("inventory.json", "r")
