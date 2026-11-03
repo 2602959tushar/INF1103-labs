@@ -1,4 +1,5 @@
 import json
+import os
 
 class Product:
     def __init__(self, product_id, name, price, stock):
@@ -55,73 +56,113 @@ class Inventory:
         return self.__products
 
 def load_inventory():
+    inventory = Inventory()
+
+    inventory_file = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "inventory.json"
+    )
+
     try:
-        file = open("inventory.json", "r")
-        data = json.load(file)
-        file.close()
+        with open(inventory_file, "r") as file:
+            content = file.read()
+
+            if content.strip() == "":
+                data = []
+            else:
+                data = json.loads(content)
+
         print("inventory.json found.")
+
+        for p in data:
+            product = Product(
+                p["id"],
+                p["name"],
+                p["price"],
+                p["stock"]
+            )
+
+            inventory.add_product(product)
+
         print("Inventory loaded successfully.")
-        return data
+        return inventory
+
     except FileNotFoundError:
         print("inventory.json not found. Starting with empty inventory.")
-        return []
-
+        return inventory
 
 def save_inventory(inventory):
     print("Saving inventory...")
-    file = open("inventory.json", "w")
-    json.dump(inventory, file)
-    file.close()
+
+    data = []
+
+    for p in inventory.get_all_products():
+        data.append(p.to_dict())
+
+    inventory_file = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "inventory.json"
+    )
+
+    with open(inventory_file, "w") as file:
+        json.dump(data, file, indent=4)
+
     print("Inventory saved successfully to inventory.json.")
 
 
 def add_product(inventory):
     print("Add New Product")
+
     pid = input("Product ID: ")
     name = input("Product Name: ")
     price = float(input("Price: "))
     stock = int(input("Stock Quantity: "))
-    inventory.append({"id": pid, "name": name, "price": price, "stock": stock})
+
+    product = Product(pid, name, price, stock)
+
+    inventory.add_product(product)
+
     print("Product added successfully!")
 
 
 def update_stock(inventory):
     print("Update Stock")
+
     pid = input("Enter Product ID: ")
-    for p in inventory:
-        if p["id"] == pid:
-            print("Product Found:")
-            print("Name:", p["name"])
-            print("Current Stock:", p["stock"])
-            new_stock = int(input("New Stock Quantity: "))
-            p["stock"] = new_stock
-            print("Stock updated successfully!")
-            return
-    print("Product not found.")
+
+    product = inventory.search_product(pid)
+
+    if product is not None:
+        print("Product Found:")
+        product.display_information()
+
+        new_stock = int(input("New Stock Quantity: "))
+
+        product.update_stock(new_stock)
+
+        print("Stock updated successfully!")
+
+    else:
+        print("Product not found.")
 
 
 def search_product(inventory):
     print("Search Product")
+
     pid = input("Enter Product ID: ")
-    for p in inventory:
-        if p["id"] == pid:
-            print("Product Found")
-            print("------------------------------------------------")
-            print("ID:", p["id"])
-            print("Name:", p["name"])
-            print("Price: $%.2f" % p["price"])
-            print("Stock:", p["stock"])
-            print("------------------------------------------------")
-            return
-    print("Product not found.")
+
+    product = inventory.search_product(pid)
+
+    if product is not None:
+        print("Product Found")
+        product.display_information()
+
+    else:
+        print("Product not found.")
 
 
 def display_all(inventory):
-    print("Current Inventory")
-    print("------------------------------------------------")
-    for p in inventory:
-        print("ID: %s | Name: %s | Price: $%.2f | Stock: %d" % (p["id"], p["name"], p["price"], p["stock"]))
-    print("------------------------------------------------")
+    inventory.display_all()
 
 
 print("========================================")
