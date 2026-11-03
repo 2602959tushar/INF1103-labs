@@ -10,6 +10,9 @@ class Product:
     def update_stock(self, quantity):
         self.__stock = quantity
 
+    def get_product_id(self):
+        return self.__product_id
+
     def display_information(self):
         print("------------------------------------------------")
         print("ID:", self.__product_id)
@@ -27,7 +30,7 @@ class Inventory:
 
     def search_product(self, product_id):
         for p in self.__products:
-            if p._Product__product_id == product_id:
+             if p.get_product_id() == product_id:
                 return p
         return None
 
