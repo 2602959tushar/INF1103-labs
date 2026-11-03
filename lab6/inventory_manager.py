@@ -31,6 +31,15 @@ class Inventory:
                 return p
         return None
 
+    def display_all(self):
+        print("Current Inventory")
+        print("------------------------------------------------")
+
+        for p in self.__products:
+            p.display_information()
+
+        print("------------------------------------------------")
+
 def load_inventory():
     try:
         file = open("inventory.json", "r")
