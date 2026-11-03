@@ -21,6 +21,14 @@ class Product:
         print("Stock:", self.__stock)
         print("------------------------------------------------")
 
+    def to_dict(self):
+        return {
+            "id": self.__product_id,
+            "name": self.__name,
+            "price": self.__price,
+            "stock": self.__stock
+        }
+
 class Inventory:
     def __init__(self):
         self.__products = []
@@ -42,6 +50,9 @@ class Inventory:
             p.display_information()
 
         print("------------------------------------------------")
+
+    def get_all_products(self):
+        return self.__products
 
 def load_inventory():
     try:
