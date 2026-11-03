@@ -123,3 +123,11 @@ while True:
         break
     else:
         print("Invalid option.")
+
+product1 = Product("P001", "Laptop", 1200.00, 15)
+
+product1.display_information()
+
+product1.update_stock(50)
+
+product1.display_information()
