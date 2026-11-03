@@ -25,6 +25,12 @@ class Inventory:
     def add_product(self, product):
         self.__products.append(product)
 
+    def search_product(self, product_id):
+        for p in self.__products:
+            if p._Product__product_id == product_id:
+                return p
+        return None
+
 def load_inventory():
     try:
         file = open("inventory.json", "r")
