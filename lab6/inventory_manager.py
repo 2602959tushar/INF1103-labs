@@ -10,6 +10,14 @@ class Product:
     def update_stock(self, quantity):
         self.__stock = quantity
 
+    def display_information(self):
+        print("------------------------------------------------")
+        print("ID:", self.__product_id)
+        print("Name:", self.__name)
+        print("Price: $%.2f" % self.__price)
+        print("Stock:", self.__stock)
+        print("------------------------------------------------")
+
 def load_inventory():
     try:
         file = open("inventory.json", "r")
