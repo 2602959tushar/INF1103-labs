@@ -85,11 +85,20 @@ def load_inventory():
             inventory.add_product(product)
 
         print("Inventory loaded successfully.")
-        return inventory
 
     except FileNotFoundError:
         print("inventory.json not found. Starting with empty inventory.")
-        return inventory
+
+    product1 = Product("P001", "Laptop", 1200.00, 15)
+    product2 = Product("P002", "Mouse", 25.50, 40)
+
+    if inventory.search_product("P001") is None:
+        inventory.add_product(product1)
+
+    if inventory.search_product("P002") is None:
+        inventory.add_product(product2)
+
+    return inventory
 
 def save_inventory(inventory):
     print("Saving inventory...")
