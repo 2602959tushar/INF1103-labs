@@ -1,5 +1,6 @@
 import json
 import os
+from abc import ABC, abstractmethod
 
 class Product:
     def __init__(self, product_id, name, price, stock):
