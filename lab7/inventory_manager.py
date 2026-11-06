@@ -2,7 +2,7 @@ import json
 import os
 from abc import ABC, abstractmethod
 
-class Product:
+class Product(ABC):
     def __init__(self, product_id, name, price, stock):
         self.__product_id = product_id
         self.__name = name
