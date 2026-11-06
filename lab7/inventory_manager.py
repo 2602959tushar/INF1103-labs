@@ -37,6 +37,11 @@ class Product(ABC):
             "stock": self.__stock
         }
 
+class CanBeShipped(ABC):
+    @abstractmethod
+    def calculate_shipping_cost(self):
+        pass
+
 
 class PhysicalProduct(Product):
     def __init__(self, product_id, name, price, stock, weight):
@@ -77,12 +82,6 @@ class DigitalProduct(Product):
         data["type"] = "digital"
         data["download_size"] = self.__download_size
         return data
-
-
-class CanBeShipped(ABC):
-    @abstractmethod
-    def calculate_shipping_cost(self):
-        pass
 
 
 class Inventory:
