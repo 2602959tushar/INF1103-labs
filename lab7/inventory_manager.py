@@ -44,6 +44,20 @@ class PhysicalProduct(Product):
         print("Weight:", self.__weight, "kg")
         print("------------------------------------------------")
 
+class DigitalProduct(Product):
+    def __init__(self, product_id, name, price, stock, download_size):
+        super().__init__(product_id, name, price, stock)
+        self.__download_size = download_size
+
+    def display_information(self):
+        print("------------------------------------------------")
+        print("ID:", self._Product__product_id)
+        print("Name:", self._Product__name)
+        print("Price: $%.2f" % self._Product__price)
+        print("Stock:", self._Product__stock)
+        print("Download Size:", self.__download_size, "MB")
+        print("------------------------------------------------")
+
 class Inventory:
     def __init__(self):
         self.__products = []
