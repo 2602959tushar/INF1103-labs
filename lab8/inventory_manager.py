@@ -135,7 +135,43 @@ class Inventory:
     def get_all_products(self):
         return self.__products
 
+class OrderLine:
+    def __init__(self, product: Product, quantity: int):
+        self.__product: Product = product
+        self.__quantity: int = quantity
 
+    def calculate_subtotal(self) -> float:
+        return self.__product.get_price() * self.__quantity
+
+    def display_information(self) -> None:
+        print(self.__product.get_product_id(), "x", self.__quantity,
+              "= $%.2f" % self.calculate_subtotal())
+
+
+class Order:
+    def __init__(self, order_id: str):
+        self.__order_id: str = order_id
+        self.__order_lines: list[OrderLine] = []
+
+    def add_order_line(self, product: Product, quantity: int) -> None:
+        order_line = OrderLine(product, quantity)
+        self.__order_lines.append(order_line)
+
+    def remove_order_line(self, index: int) -> None:
+        self.__order_lines.pop(index)
+
+    def calculate_total(self) -> float:
+        total = 0.0
+        for line in self.__order_lines:
+            total += line.calculate_subtotal()
+        return total
+
+    def display_information(self) -> None:
+        print("Order:", self.__order_id)
+        for line in self.__order_lines:
+            line.display_information()
+        print("Total: $%.2f" % self.calculate_total())
+        
 def load_inventory():
     inventory = Inventory()
 
