@@ -38,6 +38,9 @@ class Product(ABC):
     def get_supplier(self) -> Supplier:
         return self.__supplier
 
+    def get_price(self) -> float:
+        return self.__price
+
     def display_information(self):
         print("------------------------------------------------")
         print("ID:", self.__product_id)
