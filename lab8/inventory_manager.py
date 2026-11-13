@@ -22,17 +22,21 @@ class Product(ABC):
     def get_fulfilment_info(self):
         pass
 
-    def __init__(self, product_id, name, price, stock):
+    def __init__(self, product_id, name, price, stock, supplier: Supplier):
         self.__product_id = product_id
         self.__name = name
         self.__price = price
         self.__stock = stock
+        self.__supplier: Supplier = supplier
 
     def update_stock(self, quantity):
         self.__stock = quantity
 
     def get_product_id(self):
         return self.__product_id
+
+    def get_supplier(self) -> Supplier:
+        return self.__supplier
 
     def display_information(self):
         print("------------------------------------------------")
@@ -57,8 +61,8 @@ class CanBeShipped(ABC):
 
 
 class PhysicalProduct(Product, CanBeShipped):
-    def __init__(self, product_id, name, price, stock, weight):
-        super().__init__(product_id, name, price, stock)
+    def __init__(self, product_id, name, price, stock, supplier: Supplier, weight):
+        super().__init__(product_id, name, price, stock, supplier)
         self.__weight = weight
 
     def display_information(self):
@@ -79,8 +83,8 @@ class PhysicalProduct(Product, CanBeShipped):
 
 
 class DigitalProduct(Product):
-    def __init__(self, product_id, name, price, stock, download_size):
-        super().__init__(product_id, name, price, stock)
+    def __init__(self, product_id, name, price, stock, supplier: Supplier, download_size):
+        super().__init__(product_id, name, price, stock, supplier)
         self.__download_size = download_size
 
     def display_information(self):
@@ -151,6 +155,7 @@ def load_inventory():
                     p["name"],
                     p["price"],
                     p["stock"],
+                    default_supplier,
                     p.get("weight", 1.0)
                 )
 
@@ -160,6 +165,7 @@ def load_inventory():
                     p["name"],
                     p["price"],
                     p["stock"],
+                    default_supplier,
                     p.get("download_size", 0.0)
                 )
 
@@ -174,11 +180,11 @@ def load_inventory():
         print("inventory.json not found. Starting with empty inventory.")
 
     if inventory.search_product("P001") is None:
-        product1 = PhysicalProduct("P001", "Laptop", 1200.00, 15, 2.5)
+        product1 = PhysicalProduct("P001", "Laptop", 1200.00, 15, default_supplier, 2.5)
         inventory.add_product(product1)
 
     if inventory.search_product("P002") is None:
-        product2 = PhysicalProduct("P002", "Mouse", 25.50, 40, 0.2)
+        product2 = PhysicalProduct("P002", "Mouse", 25.50, 40, default_supplier, 0.2)
         inventory.add_product(product2)
 
     return inventory
@@ -226,11 +232,11 @@ def add_product(inventory):
 
     if choice == "1":
         weight = float(input("Weight (kg): "))
-        product = PhysicalProduct(pid, name, price, stock, weight)
+        product = PhysicalProduct(pid, name, price, stock, default_supplier, weight)
 
     else:
         download_size = float(input("Download Size (MB): "))
-        product = DigitalProduct(pid, name, price, stock, download_size)
+        product = DigitalProduct(pid, name, price, stock, default_supplier, download_size)
 
     inventory.add_product(product)
 
