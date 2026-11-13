@@ -9,7 +9,7 @@ class Supplier:
         self.name = name
         self.contact_email = contact_email
 
-    def display_information(self):
+    def display_information(self) -> None:
         print("Supplier ID:", self.supplier_id)
         print("Supplier Name:", self.name)
         print("Supplier Email:", self.contact_email)
@@ -19,20 +19,20 @@ default_supplier = Supplier("S001", "Default Supplier", "supplier@example.com")
 
 class Product(ABC):
     @abstractmethod
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         pass
 
-    def __init__(self, product_id, name, price, stock, supplier: Supplier):
+    def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier):
         self.__product_id = product_id
         self.__name = name
         self.__price = price
         self.__stock = stock
         self.__supplier: Supplier = supplier
 
-    def update_stock(self, quantity):
+    def update_stock(self, quantity: int) -> None:
         self.__stock = quantity
 
-    def get_product_id(self):
+    def get_product_id(self) -> str:
         return self.__product_id
 
     def get_supplier(self) -> Supplier:
@@ -41,7 +41,7 @@ class Product(ABC):
     def get_price(self) -> float:
         return self.__price
 
-    def display_information(self):
+    def display_information(self) -> None:
         print("------------------------------------------------")
         print("ID:", self.__product_id)
         print("Name:", self.__name)
@@ -49,7 +49,7 @@ class Product(ABC):
         print("Stock:", self.__stock)
         print("------------------------------------------------")
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             "id": self.__product_id,
             "name": self.__name,
@@ -59,26 +59,26 @@ class Product(ABC):
 
 class CanBeShipped(ABC):
     @abstractmethod
-    def calculate_shipping_cost(self):
+    def calculate_shipping_cost(self) -> float:
         pass
 
 
 class PhysicalProduct(Product, CanBeShipped):
-    def __init__(self, product_id, name, price, stock, supplier: Supplier, weight):
+    def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier, weight: float):
         super().__init__(product_id, name, price, stock, supplier)
         self.__weight = weight
 
-    def display_information(self):
+    def display_information(self) -> None:
         super().display_information()
         print("Weight:", self.__weight, "kg")
 
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         return "This product will be shipped to the customer."
 
-    def calculate_shipping_cost(self):
+    def calculate_shipping_cost(self) -> float:
         return self.__weight * 2
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         data = super().to_dict()
         data["type"] = "physical"
         data["weight"] = self.__weight
@@ -86,18 +86,18 @@ class PhysicalProduct(Product, CanBeShipped):
 
 
 class DigitalProduct(Product):
-    def __init__(self, product_id, name, price, stock, supplier: Supplier, download_size):
+    def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier, download_size: float):
         super().__init__(product_id, name, price, stock, supplier)
         self.__download_size = download_size
 
-    def display_information(self):
+    def display_information(self) -> None:
         super().display_information()
         print("Download Size:", self.__download_size, "MB")
 
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         return "This product will be delivered digitally."
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         data = super().to_dict()
         data["type"] = "digital"
         data["download_size"] = self.__download_size
@@ -123,7 +123,7 @@ class Inventory:
                 return p
         return None
 
-    def display_all(self):
+    def display_all(self) -> None:
         print("Current Inventory")
         print("------------------------------------------------")
 
@@ -132,7 +132,7 @@ class Inventory:
 
         print("------------------------------------------------")
 
-    def get_all_products(self):
+    def get_all_products(self) -> list[Product]:
         return self.__products
 
 class OrderLine:
@@ -171,8 +171,8 @@ class Order:
         for line in self.__order_lines:
             line.display_information()
         print("Total: $%.2f" % self.calculate_total())
-        
-def load_inventory():
+
+def load_inventory() -> Inventory:
     inventory = Inventory()
 
     inventory_file = os.path.join(
@@ -235,7 +235,7 @@ def load_inventory():
     return inventory
 
 
-def save_inventory(inventory):
+def save_inventory(inventory: Inventory) -> None:
     print("Saving inventory...")
 
     data = []
@@ -254,7 +254,7 @@ def save_inventory(inventory):
     print("Inventory saved successfully to inventory.json.")
 
 
-def add_product(inventory):
+def add_product(inventory: Inventory) -> None:
     print("Add New Product")
     print("1. Physical Product")
     print("2. Digital Product")
@@ -288,7 +288,7 @@ def add_product(inventory):
     print("Product added successfully!")
 
 
-def update_stock(inventory):
+def update_stock(inventory: Inventory) -> None:
     print("Update Stock")
 
     pid = input("Enter Product ID: ")
@@ -309,7 +309,7 @@ def update_stock(inventory):
         print("Product not found.")
 
 
-def find_product(inventory):
+def find_product(inventory: Inventory) -> None:
     print("Find Product")
 
     pid = input("Enter Product ID: ")
@@ -328,10 +328,10 @@ def find_product(inventory):
         print("Product not found.")
 
 
-def display_all(inventory):
+def display_all(inventory: Inventory) -> None:
     inventory.display_all()
 
-def test_association():
+def test_association() -> None:
     supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
     laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
     ebook = DigitalProduct("T002", "Test Ebook", 15.0, 100, supplier, 5.0)
@@ -346,7 +346,7 @@ def test_association():
 
 test_association()
 
-def test_aggregation():
+def test_aggregation() -> None:
     supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
     laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
 
@@ -365,8 +365,30 @@ def test_aggregation():
     inventory_b.add_product(laptop)
     print("Inventory B has laptop:", inventory_b.find_product("T001") is laptop)
 
-
 test_aggregation()
+
+def test_composition() -> None:
+    supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
+    laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
+    ebook = DigitalProduct("T002", "Test Ebook", 15.0, 100, supplier, 5.0)
+
+    order1 = Order("O001")
+    order1.add_order_line(laptop, 2)
+    order1.add_order_line(ebook, 3)
+    order1.display_information()
+
+    order2 = Order("O002")
+    order2.add_order_line(laptop, 1)
+    order2.display_information()
+
+    order1.remove_order_line(0)
+    print("After removing line 0 from order 1:")
+    order1.display_information()
+
+    print("Laptop still usable:")
+    laptop.display_information()
+
+test_composition()
 
 print("========================================")
 print("INVENTORY MANAGEMENT SYSTEM")
@@ -403,7 +425,7 @@ while True:
         save_inventory(inventory)
 
     elif option == "7":
-        test_aggregation()
+        test_composition()
 
     elif option == "6":
         print("Saving inventory before exit...")
