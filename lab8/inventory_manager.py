@@ -331,6 +331,10 @@ def find_product(inventory: Inventory) -> None:
 def display_all(inventory: Inventory) -> None:
     inventory.display_all()
 
+def show_product_details(product: Product) -> None:
+    product.display_information()
+    print(product.get_fulfilment_info())
+
 def test_association() -> None:
     supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
     laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
@@ -342,9 +346,6 @@ def test_association() -> None:
     del supplier
     print("After del supplier:")
     laptop.get_supplier().display_information()
-
-
-test_association()
 
 def test_aggregation() -> None:
     supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
@@ -364,8 +365,6 @@ def test_aggregation() -> None:
 
     inventory_b.add_product(laptop)
     print("Inventory B has laptop:", inventory_b.find_product("T001") is laptop)
-
-test_aggregation()
 
 def test_composition() -> None:
     supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
@@ -388,7 +387,31 @@ def test_composition() -> None:
     print("Laptop still usable:")
     laptop.display_information()
 
-test_composition()
+def test_lsp() -> None:
+    supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
+    laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
+    ebook = DigitalProduct("T002", "Test Ebook", 15.0, 100, supplier, 5.0)
+
+    show_product_details(laptop)
+    show_product_details(ebook)
+
+    inventory = Inventory()
+    inventory.add_product(laptop)
+    inventory.add_product(ebook)
+
+    inventory.find_product("T001").update_stock(10)
+    inventory.find_product("T002").update_stock(50)
+    inventory.display_all()
+
+def test_polymorphism() -> None:
+    supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
+    inventory = Inventory()
+    inventory.add_product(PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0))
+    inventory.add_product(DigitalProduct("T002", "Test Ebook", 15.0, 100, supplier, 5.0))
+
+    for product in inventory.get_all_products():
+        product.display_information()
+        print(product.get_fulfilment_info())
 
 print("========================================")
 print("INVENTORY MANAGEMENT SYSTEM")
@@ -425,7 +448,7 @@ while True:
         save_inventory(inventory)
 
     elif option == "7":
-        test_composition()
+        test_polymorphism()
 
     elif option == "6":
         print("Saving inventory before exit...")
