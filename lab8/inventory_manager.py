@@ -103,12 +103,18 @@ class DigitalProduct(Product):
 
 class Inventory:
     def __init__(self):
-        self.__products = []
+        self.__products: list[Product] = []
 
-    def add_product(self, product):
+    def add_product(self, product: Product) -> None:
         self.__products.append(product)
 
-    def search_product(self, product_id):
+    def remove_product(self, product_id: str) -> None:
+        for p in self.__products:
+            if p.get_product_id() == product_id:
+                self.__products.remove(p)
+                return
+
+    def find_product(self, product_id: str) -> Product | None:
         for p in self.__products:
             if p.get_product_id() == product_id:
                 return p
@@ -179,11 +185,11 @@ def load_inventory():
     except FileNotFoundError:
         print("inventory.json not found. Starting with empty inventory.")
 
-    if inventory.search_product("P001") is None:
+    if inventory.find_product("P001") is None:
         product1 = PhysicalProduct("P001", "Laptop", 1200.00, 15, default_supplier, 2.5)
         inventory.add_product(product1)
 
-    if inventory.search_product("P002") is None:
+    if inventory.find_product("P002") is None:
         product2 = PhysicalProduct("P002", "Mouse", 25.50, 40, default_supplier, 0.2)
         inventory.add_product(product2)
 
@@ -222,7 +228,7 @@ def add_product(inventory):
 
     pid = input("Product ID: ")
 
-    if inventory.search_product(pid) is not None:
+    if inventory.find_product(pid) is not None:
         print("Product ID already exists.")
         return
 
@@ -248,7 +254,7 @@ def update_stock(inventory):
 
     pid = input("Enter Product ID: ")
 
-    product = inventory.search_product(pid)
+    product = inventory.find_product(pid)
 
     if product is not None:
         print("Product Found:")
@@ -264,12 +270,12 @@ def update_stock(inventory):
         print("Product not found.")
 
 
-def search_product(inventory):
-    print("Search Product")
+def find_product(inventory):
+    print("Find Product")
 
     pid = input("Enter Product ID: ")
 
-    product = inventory.search_product(pid)
+    product = inventory.find_product(pid)
 
     if product is not None:
         print("Product Found")
@@ -286,6 +292,20 @@ def search_product(inventory):
 def display_all(inventory):
     inventory.display_all()
 
+def test_association():
+    supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
+    laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
+    ebook = DigitalProduct("T002", "Test Ebook", 15.0, 100, supplier, 5.0)
+
+    laptop.get_supplier().display_information()
+    ebook.get_supplier().display_information()
+
+    del supplier
+    print("After del supplier:")
+    laptop.get_supplier().display_information()
+
+
+test_association()
 
 print("========================================")
 print("INVENTORY MANAGEMENT SYSTEM")
@@ -298,9 +318,10 @@ while True:
     print("1. Display All Products")
     print("2. Add Product")
     print("3. Update Stock")
-    print("4. Search Product")
+    print("4. Find Product")
     print("5. Save Inventory")
     print("6. Exit")
+    print("7. Run Tests")
     print("----------------------------")
 
     option = input("Enter option: ")
@@ -315,10 +336,13 @@ while True:
         update_stock(inventory)
 
     elif option == "4":
-        search_product(inventory)
+        find_product(inventory)
 
     elif option == "5":
         save_inventory(inventory)
+
+    elif option == "7":
+        test_association()
 
     elif option == "6":
         print("Saving inventory before exit...")
