@@ -307,6 +307,28 @@ def test_association():
 
 test_association()
 
+def test_aggregation():
+    supplier = Supplier("S100", "TechSource Ltd", "sales@techsource.com")
+    laptop = PhysicalProduct("T001", "Test Laptop", 1000.0, 5, supplier, 2.0)
+
+    inventory_a = Inventory()
+    inventory_b = Inventory()
+
+    inventory_a.add_product(laptop)
+    print("Inventory A has laptop:", inventory_a.find_product("T001") is laptop)
+
+    inventory_a.remove_product("T001")
+    print("Inventory A has laptop:", inventory_a.find_product("T001") is laptop)
+
+    print("Laptop still usable after removal:")
+    laptop.display_information()
+
+    inventory_b.add_product(laptop)
+    print("Inventory B has laptop:", inventory_b.find_product("T001") is laptop)
+
+
+test_aggregation()
+
 print("========================================")
 print("INVENTORY MANAGEMENT SYSTEM")
 print("========================================")
@@ -342,7 +364,7 @@ while True:
         save_inventory(inventory)
 
     elif option == "7":
-        test_association()
+        test_aggregation()
 
     elif option == "6":
         print("Saving inventory before exit...")
