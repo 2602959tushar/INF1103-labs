@@ -1,0 +1,245 @@
+commit 0b631255c020bca61e72c8ce2ec2d887d98af05b
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 23:19:51 2026 +0800
+
+    added gitignore
+
+commit 772ac5c5c129049f1234dccf54b9e37f143861bd
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 23:03:25 2026 +0800
+
+    testing completed, working program
+
+commit 2f8b291784e750d3492dd2537d295707df4fea15
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:51:41 2026 +0800
+
+    implemented canbeshipped
+
+commit d3993e8b246e07ff74a7b632d857d15f621d5a1b
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:48:10 2026 +0800
+
+    relocated canbeshipped abstract class
+
+commit 5494334f7059695beab3819b2aad28e227d1ceed
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:46:41 2026 +0800
+
+    got abstract class to work. troubleshooting
+
+commit e53760c9a62fb635d418f37992ecd9a63615fd47
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:34:01 2026 +0800
+
+    product class is now abstract
+
+commit 677ee0963f5e01aa03ca901af83d18589aae93f9
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:33:04 2026 +0800
+
+    imported abstract base class and method
+
+commit 3ce08eb9c0a55e2231f76a85f9dcff786aa0af72
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:27:53 2026 +0800
+
+    refactored subclasses physical and digital product using display information super
+
+commit 888bb2b0c6b5f7027b2ebb7df6b7cbb65a0efd7d
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:25:01 2026 +0800
+
+    added digital product for digital size
+
+commit 7cb9fe12e9f9fc247f474b1cfb8193092b396f2d
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:14:14 2026 +0800
+
+    added physical product, used super
+
+commit 23b16e0815ff489feb013e5e9fec6f1e1cfb7cac
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 22:07:52 2026 +0800
+
+    lab7 first commit
+
+commit 40c9ef7005bf169fb6072202f290fabd8aa2a149
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:28:36 2026 +0800
+
+    added in products laptop and mouse. troubleshooting
+
+commit bfdd36ea8b868f5672f338d31a9600277a817fe7
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 23:06:06 2026 +0800
+
+    refactored all functions and conducted troubleshooting for errors involving inventory.json
+
+commit 5a8196f1fb61b91eea192624b49e03e9c0249936
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:52:33 2026 +0800
+
+    added to dict
+
+commit 54064d0a7d446c9a1357bf79300eb58bf0e4c0a2
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:48:29 2026 +0800
+
+    added public getter
+
+commit 80c48d7d2d13eddfedec7fbdc37faa9b3a14ed50
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:46:34 2026 +0800
+
+    defined display all
+
+commit f668520d1c035b0363b9d66f665f7553116813bf
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:44:02 2026 +0800
+
+    defined search product
+
+commit 55795a868663d7df0238e549327ddd179ed042c6
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:41:18 2026 +0800
+
+    defined add product
+
+commit 1fcf64b0fb246d90ad6735b0935b7dc448bca8a1
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:39:57 2026 +0800
+
+    added inventory class, removed temp code
+
+commit aeca5208552f1f60aec26deb39fcc5db1a0ad78b
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:38:31 2026 +0800
+
+    added temp code
+
+commit 8c80e8b47f64ab60d75bbe234575f5674f1942c4
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:37:27 2026 +0800
+
+    defined display information
+
+commit 6cf52aa8df43d7ef596860d6c38e5cfe5bae0913
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:30:56 2026 +0800
+
+    defined update stock
+
+commit 9d1e3d0067ee8e99e4f455e8a411e8508d4053b5
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:28:54 2026 +0800
+
+    added product class
+
+commit b27db01ab3fe005f37d8d8484d2b92a083c59f21
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Tue Nov 3 22:27:31 2026 +0800
+
+    added class
+
+commit 37e4be9088aa9b755d1b26e37f31ab3e13092cfe
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:53:35 2026 +0800
+
+    Save inventory works
+
+commit 13081162d043b98f690b4f3228332bbb639705d9
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:45:53 2026 +0800
+
+    Load inventory works
+
+commit 0729bf35b727d7d96ccaa3821d46e84e48946a6e
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:36:27 2026 +0800
+
+    Creation of dictionary and some products
+
+commit e5efaaf7dba77ff6bd844788bbb2bf4214c4e8e7
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Oct 1 22:19:56 2026 +0800
+
+    implementation of modularisation of history tracking functions
+
+commit 347792169d8720f59fe07234aed49c9f6d42de2c
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Oct 1 22:15:02 2026 +0800
+
+    implementation of history tracking and write back
+
+commit e0e95cc319254801b75e18c62e0ed15827e90ca8
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:45:44 2026 +0800
+
+    implementation of generate report function
+
+commit 88ad174e2710bfc9584c0632b4e11a9aeccaf3ad
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:43:04 2026 +0800
+
+    implementation of tax
+
+commit 9a5bb7f539cb41ec57aa20be84e6661c00a515df
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:33:07 2026 +0800
+
+    implementation of process delivery function
+
+commit 17aba77388a08be0603036a6a5bf111b3e1c25f7
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:31:32 2026 +0800
+
+    indentation fix
+
+commit 50ad7af47b7e6e8a712ddf38cba6a101f713b485
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:29:34 2026 +0800
+
+    get valid input function added
+
+commit a5934e3fc3df7c2e905a9b2ee656ef6b875fbf2b
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 22:17:57 2026 +0800
+
+    begin modular auditor
+
+commit a268c70181c5ecd46cfd087f81abc233c75f577a
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:31:59 2026 +0800
+
+    auditor intermediate
+
+commit 2bb42afdf6d0d52a5b32e8ff051c7d117484e334
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:28:19 2026 +0800
+
+    auditor start
+
+commit a74ea1bb744caf3d6ce385dddc1e3d555820de8a
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:21:07 2026 +0800
+
+    Update lab 2
+
+commit 1e25192765c13c5aa9c9f92bd6195d2dfeeb3249
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 10:44:55 2026 +0800
+
+    lab2
+
+commit b5f59cc9d8e052c5909b62511cf4163049db0181
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 11:26:09 2026 +0800
+
+    New profile creator update
+
+commit 45aa4360620bf09f1a29f6a33045efc257392161
+Author: Tushar <2602959@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 10:57:25 2026 +0800
+
+    First poast
