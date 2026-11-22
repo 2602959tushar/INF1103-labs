@@ -89,16 +89,15 @@ class BulkDiscount(DiscountStrategy):
         self.threshold = threshold
         self.amount = amount
 
-    
-class StudentDiscount(DiscountStrategy):
-    def apply(self, total: float) -> float:
-        return total * 0.95
-
-
     def apply(self, total: float) -> float:
         if total >= self.threshold:
             return total - self.amount
         return total
+
+
+class StudentDiscount(DiscountStrategy):
+    def apply(self, total: float) -> float:
+        return total * 0.95
 
 
 class PhysicalProduct(Product, CanBeShipped):
@@ -207,9 +206,10 @@ class OrderLine:
 
 
 class Order:
-    def __init__(self, order_id: str):
+    def __init__(self, order_id: str, discount: DiscountStrategy = None):
         self.__order_id: str = order_id
         self.__order_lines: list[OrderLine] = []
+        self.__discount = discount if discount is not None else NoDiscount()
 
     def add_order_line(self, product: Product, quantity: int) -> None:
         order_line = OrderLine(product, quantity)
@@ -258,27 +258,19 @@ def load_inventory() -> Inventory:
         for p in data:
             product_type = p.get("type", "physical")
 
-            if product_type == "physical":
-                product = PhysicalProduct(
+            try:
+                product = ProductFactory.create(
+                    product_type,
                     p["id"],
                     p["name"],
                     p["price"],
                     p["stock"],
                     default_supplier,
-                    p.get("weight", 1.0)
+                    weight=p.get("weight", 1.0),
+                    download_size=p.get("download_size", 0.0)
                 )
-
-            elif product_type == "digital":
-                product = DigitalProduct(
-                    p["id"],
-                    p["name"],
-                    p["price"],
-                    p["stock"],
-                    default_supplier,
-                    p.get("download_size", 0.0)
-                )
-
-            else:
+            except ValueError as e:
+                print(e)
                 continue
 
             inventory.add_product(product)
@@ -289,11 +281,11 @@ def load_inventory() -> Inventory:
         print("inventory.json not found. Starting with empty inventory.")
 
     if inventory.find_product("P001") is None:
-        product1 = PhysicalProduct("P001", "Laptop", 1200.00, 15, default_supplier, 2.5)
+        product1 = ProductFactory.create("physical", "P001", "Laptop", 1200.00, 15, default_supplier, weight=2.5)
         inventory.add_product(product1)
 
     if inventory.find_product("P002") is None:
-        product2 = PhysicalProduct("P002", "Mouse", 25.50, 40, default_supplier, 0.2)
+        product2 = ProductFactory.create("physical", "P002", "Mouse", 25.50, 40, default_supplier, weight=0.2)
         inventory.add_product(product2)
 
     return inventory
@@ -341,11 +333,16 @@ def add_product(inventory: Inventory) -> None:
 
     if choice == "1":
         weight = float(input("Weight (kg): "))
-        product = PhysicalProduct(pid, name, price, stock, default_supplier, weight)
-
+        product = ProductFactory.create(
+            "physical", pid, name, price, stock,
+            default_supplier, weight=weight
+        )
     else:
         download_size = float(input("Download Size (MB): "))
-        product = DigitalProduct(pid, name, price, stock, default_supplier, download_size)
+        product = ProductFactory.create(
+            "digital", pid, name, price, stock,
+            default_supplier, download_size=download_size
+        )
 
     inventory.add_product(product)
 
