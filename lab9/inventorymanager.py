@@ -89,6 +89,12 @@ class BulkDiscount(DiscountStrategy):
         self.threshold = threshold
         self.amount = amount
 
+    
+class StudentDiscount(DiscountStrategy):
+    def apply(self, total: float) -> float:
+        return total * 0.95
+
+
     def apply(self, total: float) -> float:
         if total >= self.threshold:
             return total - self.amount
