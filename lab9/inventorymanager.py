@@ -25,6 +25,12 @@ class Product(ABC):
         pass
 
     def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier):
+        if price <= 0:
+            raise ValueError("Price must be greater than zero.")
+
+        if stock < 0:
+            raise ValueError("Stock quantity cannot be negative.")
+        
         self.__product_id = product_id
         self.__name = name
         self.__price = price
@@ -32,6 +38,8 @@ class Product(ABC):
         self.__supplier: Supplier = supplier
 
     def update_stock(self, quantity: int) -> None:
+        if quantity < 0:
+            raise ValueError("Stock quantity cannot be negative.")
         self.__stock = quantity
 
     def get_product_id(self) -> str:
@@ -194,6 +202,8 @@ class Inventory:
 
 class OrderLine:
     def __init__(self, product: Product, quantity: int):
+        if quantity <= 0:
+            raise ValueError("Quantity must be greater than zero.")
         self.__product: Product = product
         self.__quantity: int = quantity
 
