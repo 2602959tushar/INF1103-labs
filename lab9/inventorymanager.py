@@ -4,10 +4,12 @@ import os
 from abc import ABC, abstractmethod
 
 class Supplier:
+    
     def __init__(self, supplier_id: str, name: str, contact_email: str):
         self.supplier_id = supplier_id
         self.name = name
         self.contact_email = contact_email
+
 
     def display_information(self) -> None:
         print("Supplier ID:", self.supplier_id)
@@ -186,15 +188,21 @@ class Order:
     def add_order_line(self, product: Product, quantity: int) -> None:
         order_line = OrderLine(product, quantity)
         self.__order_lines.append(order_line)
+    
+    def set_discount(self, discount: DiscountStrategy) -> None:
+        self.__discount = discount
+
 
     def remove_order_line(self, index: int) -> None:
         self.__order_lines.pop(index)
+
 
     def calculate_total(self) -> float:
         total = 0.0
         for line in self.__order_lines:
             total += line.calculate_subtotal()
-        return total
+        return self.__discount.apply(total)
+
 
     def display_information(self) -> None:
         print("Order:", self.__order_id)
